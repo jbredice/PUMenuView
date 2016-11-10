@@ -149,6 +149,7 @@
 	if (self.isAnimationPresenting || !self.isHidden || !self.readyForShowing) {
 		return;
 	}
+
 	
 	NSObject<PUMenuViewDelegate> *delegate = self.delegate;
 	[self performOptionSelector:@selector(menuViewWillShow:) on:delegate withObject:self];
@@ -156,6 +157,8 @@
 	[UIView animateWithDuration:self.animationBackgroundDuration animations:^(void){
 		self.backgroundView.alpha = 1;
 	}];
+    [self setNeedsLayout];
+
 	
 	for (int i = 0; i < self.items.count; i++) {
 		UIView *item = self.items[i];
